@@ -17,14 +17,17 @@ namespace ContactManagerProject.Data
         public static void Initialize(ApplicationDbContext context)
         {
             // Seed des catégories
-            context.Categories.AddRange(
-                new Categorie { Nom = "Famille" },
-                new Categorie { Nom = "Ami" },
-                new Categorie { Nom = "Travail" },
-                new Categorie { Nom = "Autre" }
-            );
+            if (!context.Categories.Any())
+            {
+                context.Categories.AddRange(
+                    new Categorie { Nom = "Famille" },
+                    new Categorie { Nom = "Ami" },
+                    new Categorie { Nom = "Travail" },
+                    new Categorie { Nom = "Autre" }
+                );
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
     }
 }
